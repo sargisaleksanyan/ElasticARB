@@ -117,7 +117,6 @@ public class Bulk {
     public void indexList(List<File> fileList){
         StringBuilder bulkJsonBuilder=new StringBuilder();
         for(int i=0;i<fileList.size();i++){
-            writeDataToFile(couryTypeAbbr+" "+fileList.get(i).getAbsolutePath(),"Files/Written.txt");
             String idjson=getJsonIndex(fileList.get(i));
             String jsonContent=getJsonContent(fileList.get(i));
             if(idjson!=null) {
@@ -150,16 +149,5 @@ public class Bulk {
         }
     };
 
-    public void writeDataToFile(String content, String fileName) {
-        try {
-            FileWriter fw = new FileWriter(fileName, true);
-            fw.write(content);
-            fw.write("\n");
-            fw.flush();
-            fw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 }

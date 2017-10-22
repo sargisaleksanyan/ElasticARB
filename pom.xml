@@ -22,7 +22,7 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>BulkGIC</mainClass>
+                    <mainClass>Bulk</mainClass>
                 </configuration>
             </plugin>
         </plugins>

@@ -93,14 +93,14 @@ public class Bulk {
         queue.add(readerFile);
         while (!queue.isEmpty()) {
             File file = queue.remove();
-            for (int j = file.listFiles().length - 1; j >= 0; j--) {
+            for (int j =0;j< file.listFiles().length ; j++) {
                 File subFile = file.listFiles()[j];
                 if (subFile.isDirectory()) {
                     queue.add(subFile);
                 } else {
                     if (subFile.getName().endsWith("txt")) {
                         fileList.add(subFile);
-                        if(fileList.size()==1200){
+                        if(fileList.size()==1500){
                             List<File> files_=fileList;
                             indexList(files_);
                             fileList=null;

@@ -42,8 +42,8 @@ public class Bulk {
 
     public static void main(String[] args) {
         Bulk es = new Bulk();
-      // es.readSubDir(new File("/data/doc/решения_арбитражных_судов/arb_sud"));
-          es.readSubDir(new File("/hdd/Russia/Filtered/решения_арбитражных_судов/arb_sud"));
+      es.readSubDir(new File("/data/doc/решения_арбитражных_судов/arb_sud"));
+        //  es.readSubDir(new File("/hdd/Russia/Filtered/решения_арбитражных_судов/arb_sud"));
         es.closeClient();
     }
 

@@ -42,8 +42,8 @@ public class Bulk {
 
     public static void main(String[] args) {
         Bulk es = new Bulk();
-       es.readSubDir(new File("/data/doc/решения_арбитражных_судов/arb_sud"));
-        ///  es.readSubDir(new File("/hdd/Russia/Filtered/решения_арбитражных_судов/arb_sud"));
+      // es.readSubDir(new File("/data/doc/решения_арбитражных_судов/arb_sud"));
+          es.readSubDir(new File("/hdd/Russia/Filtered/решения_арбитражных_судов/arb_sud"));
         es.closeClient();
     }
 
@@ -105,7 +105,7 @@ public class Bulk {
         while (!queue.isEmpty()) {
             File file = queue.remove();
             int fileSize = file.listFiles().length;
-            for (int j = fileSize-1 ; j >=0; j--) {
+            for (int j = 0 ; j <fileSize; j++) {
                 File subFile = file.listFiles()[j];
                 if (subFile.isDirectory()) {
                     queue.add(subFile);
@@ -165,6 +165,7 @@ public class Bulk {
 
     private boolean isEixist(File file) {
         String fileId = getFileId(file);
+        System.out.println("Id "+fileId);
         String query = queryBuilder(fileId);
         Map<String, String> params = Collections.emptyMap();
 

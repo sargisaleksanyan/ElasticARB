@@ -100,6 +100,7 @@ public class Bulk {
     //Written.txt
     private void readSubDir(File readerFile) {
         Queue<File> queue = new LinkedList<File>();
+        int count=0;
         List<File> fileList = new ArrayList<File>();
         queue.add(readerFile);
         while (!queue.isEmpty()) {
@@ -111,11 +112,16 @@ public class Bulk {
                     queue.add(subFile);
                 } else {
                     if (subFile.getName().endsWith("txt")) {
-                        fileList.add(subFile);
-                        if (fileList.size() == 1200) {
-                            indexList(fileList);
-                            fileList = null;
-                            fileList = new ArrayList<File>();
+                        if(count<3072000) {
+                            count++;
+                        }
+                        else{
+                            fileList.add(subFile);
+                            if (fileList.size() == 1200) {
+                                indexList(fileList);
+                                fileList = null;
+                                fileList = new ArrayList<File>();
+                            }
                         }
                     }
                 }

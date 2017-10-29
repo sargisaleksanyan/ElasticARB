@@ -112,16 +112,16 @@ public class Bulk {
                     queue.add(subFile);
                 } else {
                     if (subFile.getName().endsWith("txt")) {
-                        if(count<432000){
-                            count++;
-                        }
-                        else{
+                   //     if(count<432000){
+                     //       count++;
+                   //     }
+                   //     else{
                             fileList.add(subFile);
                             if (fileList.size() == 1200) {
                                 indexList(fileList);
                                 fileList = null;
                                 fileList = new ArrayList<File>();
-                            }
+                       //     }
                         }
                     }
                 }

@@ -102,6 +102,7 @@ public class Bulk {
     private void readSubDir(File readerFile) {
         Queue<File> queue = new LinkedList<File>();
         List<File> fileList = new ArrayList<File>();
+        int count=0;
         queue.add(readerFile);
         while (!queue.isEmpty()) {
             File file = queue.remove();
@@ -112,19 +113,19 @@ public class Bulk {
                     queue.add(subFile);
                 } else {
                     if (subFile.getName().endsWith("txt")) {
-                   //     if(count<432000){
-                     //       count++;
-                   //     }
-                   //     else{
+                     // if(count<432000){
+                         //   count++;
+                      // }
+                       //else{
                             fileList.add(subFile);
                             if (fileList.size() == 1200) {
                                 indexList(fileList);
                                 fileList = null;
                                 fileList = new ArrayList<File>();
-                       //     }
+                           }
                         }
                     }
-                }
+               // }
             }
         }
         if (fileList.size() > 0) {
@@ -167,7 +168,6 @@ public class Bulk {
             isPrevious=true;
             System.out.println(">>>>>>>>>> Returning to previous 1200 list from: " + previousList.get(0).getAbsolutePath());
             System.out.println(" Returning  " + successCount);
-            previousList=null;
             List<File> newList=previousList;
             previousList=null;
             indexList(newList);

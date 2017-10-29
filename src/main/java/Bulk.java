@@ -106,7 +106,7 @@ public class Bulk {
         while (!queue.isEmpty()) {
             File file = queue.remove();
             int fileSize = file.listFiles().length;
-            for (int j = fileSize-1;j>=0; j--) {
+            for (int j = 0;j<fileSize; j++) {
                 File subFile = file.listFiles()[j];
                 if (subFile.isDirectory()) {
                     queue.add(subFile);

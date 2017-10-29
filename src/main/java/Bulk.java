@@ -42,8 +42,8 @@ public class Bulk {
 
     public static void main(String[] args) {
         Bulk es = new Bulk();
-      es.readSubDir(new File("/data/doc/решения_арбитражных_судов/arb_sud"));
-        //  es.readSubDir(new File("/hdd/Russia/Filtered/решения_арбитражных_судов/arb_sud"));
+      //es.readSubDir(new File("/data/doc/решения_арбитражных_судов/arb_sud"));
+         es.readSubDir(new File("/hdd/Russia/Filtered/решения_арбитражных_судов/arb_sud"));
         es.closeClient();
     }
 
@@ -106,22 +106,19 @@ public class Bulk {
         while (!queue.isEmpty()) {
             File file = queue.remove();
             int fileSize = file.listFiles().length;
-            for (int j = 0 ; j <fileSize; j++) {
+            for (int j = fileSize-1;j>=0; j--) {
                 File subFile = file.listFiles()[j];
                 if (subFile.isDirectory()) {
                     queue.add(subFile);
                 } else {
                     if (subFile.getName().endsWith("txt")) {
-                        if(count<2000000) {
-                            count++;
-                        }
-                        else{
+
                             fileList.add(subFile);
                             if (fileList.size() == 1200) {
                                 indexList(fileList);
                                 fileList = null;
                                 fileList = new ArrayList<File>();
-                            }
+
                         }
                     }
                 }
@@ -140,6 +137,7 @@ public class Bulk {
             if (exist) {
               previousList=fileList;
               System.out.println("Skipping next 1200 from: " + fileList.get(0).getAbsolutePath());
+              System.out.println("Skipping : " + successCount);
               return;
             }
 
@@ -164,8 +162,11 @@ public class Bulk {
         if(previousList!=null){
             isPrevious=true;
             System.out.println(">>>>>>>>>> Returning to previous 1200 list from: " + previousList.get(0).getAbsolutePath());
-          indexList(previousList);
-          previousList=null;
+            System.out.println(" Returning  " + successCount);
+            previousList=null;
+            List<File> newList=previousList;
+            previousList=null;
+            indexList(newList);
         }
     }
 

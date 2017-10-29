@@ -23,6 +23,7 @@ public class Bulk {
     private final String couryType = "Arbitration Court";
     private final String couryTypeAbbr = "ac";
     int successCount = 0;
+    int skipCount = 0;
     int failedCount = 0;
     private boolean isPrevious = false;
     private List<File> previousList =null;
@@ -100,7 +101,6 @@ public class Bulk {
     //Written.txt
     private void readSubDir(File readerFile) {
         Queue<File> queue = new LinkedList<File>();
-        int count=0;
         List<File> fileList = new ArrayList<File>();
         queue.add(readerFile);
         while (!queue.isEmpty()) {
@@ -139,8 +139,9 @@ public class Bulk {
             boolean exist = isEixist(fileList.get(0));
             if (exist) {
               previousList=fileList;
+              skipCount++;
               System.out.println("Skipping next 1200 from: " + fileList.get(0).getAbsolutePath());
-              System.out.println("Skipping : " + successCount);
+              System.out.println("Skipping : " +skipCount);
               return;
             }
 

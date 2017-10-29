@@ -112,7 +112,7 @@ public class Bulk {
                     queue.add(subFile);
                 } else {
                     if (subFile.getName().endsWith("txt")) {
-                        if(count<3072000) {
+                        if(count<2000000) {
                             count++;
                         }
                         else{
